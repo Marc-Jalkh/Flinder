@@ -8,7 +8,10 @@ const Auth = () => {
     <View style={styles.container}>
       <Text style={styles.SmallHeadingText}>It's a Big World</Text>
       <Text style={styles.BigHeadingText}>Out There,{'\n'}Go Explore</Text>
+      <View style={styles.GetStarted}>
       <Button mode='contained' buttonColor={colors.primary}  onPress={() => console.log('Pressed')}>Get Started </Button>
+      <Button mode='contained' style={styles.Login} buttonColor={colors.primary}  onPress={() => console.log('Pressed')}>Login </Button>
+      </View>
       <StatusBar style="auto" />
     </View>
   );
