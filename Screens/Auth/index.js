@@ -1,21 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
+import { Text, View } from 'react-native';
+import styles from '../../assets/StyleSheet/Auth';
+import { Button } from 'react-native-paper';
+import colors from '../../assets/StyleSheet/Colors';
 const Auth = () => {
   return (
     <View style={styles.container}>
-      <Text>Auth</Text>
+      <Text style={styles.SmallHeadingText}>It's a Big World</Text>
+      <Text style={styles.BigHeadingText}>Out There,{'\n'}Go Explore</Text>
+      <Button mode='contained' buttonColor={colors.primary}  onPress={() => console.log('Pressed')}>Get Started </Button>
+      <StatusBar style="auto" />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
 
 export default Auth;
