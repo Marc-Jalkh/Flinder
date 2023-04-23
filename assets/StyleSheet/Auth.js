@@ -19,7 +19,7 @@ export default StyleSheet.create({
     },
     GetStarted: {
         position: 'absolute',
-        bottom: 20,
+        bottom: 5,
         width: '90%',
         marginLeft: 20,
         marginRight: 20,
