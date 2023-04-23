@@ -18,11 +18,22 @@ export default StyleSheet.create({
         color: colors.black,
     },
     GetStarted: {
+        position: 'absolute',
+        bottom: 20,
+        width: '90%',
         marginLeft: 20,
         marginRight: 20,
-        marginTop: 450,
     },
     Login: {
         marginTop: 15,
+    },
+    textBox: {
+        marginRight: 20,
+        marginLeft: 20,
+        marginTop: '30%',
+    },
+    LoginRegisterScreen: {
+        backgroundColor: colors.white,
+        marginTop: 40,
     },
 });
