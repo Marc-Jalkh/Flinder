@@ -142,13 +142,6 @@ const Register = ({ navigation ,route }) => {
           onChangeText={(pass2) => setPass2(pass2)}
           outlineColor={error2["pass2"]}
         />
-        <Checkbox
-          status={checked ? "checked" : "unchecked"}
-          onPress={() => {
-            setChecked(!checked);
-          }}
-        />
-        <Text>Remember Me</Text>
       </View>
       <View style={styles.GetStarted}>
         <Button

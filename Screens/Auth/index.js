@@ -13,8 +13,8 @@ const Auth = ({navigation}) => {
       <ImageBackground  source={require('../../assets/img/travel.png')}  style={{ flex:1}} >
       <Text style={styles.BigHeadingText}>Out There,{'\n'}Go Explore</Text>
       <View style={styles.GetStarted}>
-      <Button mode='contained' style={styles.Register} buttonColor={colors.primary}  onPress={() => navigation.navigate('SignUp')}>Get Started </Button>
-      <Button mode='text' style={styles.Login} textColor={colors.primary}  onPress={() => navigation.navigate('Login')}>Login </Button>
+      <Button mode='contained' style={styles.Register} buttonColor={colors.secondary}  onPress={() => navigation.navigate('SignUp')}>Get Started </Button>
+      <Button mode='text' style={styles.Login} textColor={colors.tertiary}  onPress={() => navigation.navigate('Login')}>Login </Button>
       </View>
       <StatusBar style="auto" />
       </ImageBackground>

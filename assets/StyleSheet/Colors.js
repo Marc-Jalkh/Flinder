@@ -20,6 +20,7 @@ const customFonts = async () => {
 const colors = {
     primary: '#2A1E5C',
     secondary: '#759FBC',
+    seconds: 'lightblue',
     tertiary: '#EEFFFF',
     white: '#FFFFFF',
     black: '#1F271B',

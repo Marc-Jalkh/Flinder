@@ -49,13 +49,6 @@ const Register = ({ navigation ,route }) => {
           mode="outlined"
           onChangeText={(pass) => HandlechangePass(pass)}
         />
-        <Checkbox
-        status={checked ? 'checked' : 'unchecked'}
-        onPress={() => {
-            setChecked(!checked);
-          }}
-        />
-        <Text >Remember Me</Text>
       </View>
       <View style={styles.GetStarted}>
         <Button

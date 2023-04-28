@@ -6,10 +6,22 @@ customFonts();
 
 export default StyleSheet.create({
     container: {
-        height: '50px',
+        flexDirection: 'row',
+        height: 50,
     },
     logo: {
-        height: '50px',
-        width: '50px',
+        height: 50,
+        width: 50,
     },
+    profile: {
+        marginTop: 5,
+        marginRight: 20,
+    },
+    title: {
+        marginTop: 5,
+        marginLeft: 20,
+        fontSize: 35,
+        fontFamily: 'Uncut-Sans-Bold',
+        color: colors.primary,
+    }
 });

@@ -74,7 +74,7 @@ export default function App() {
     <SafeAreaProvider>
     <NavigationContainer>
       <PaperProvider theme={customTheme}>
-        {isLoggedIn ? <Home /> : <WelcomeScreen changed={changed} setChanged={setChanged}/>}
+        {isLoggedIn ? <Home changed={changed} setChanged={setChanged}/> : <WelcomeScreen changed={changed} setChanged={setChanged}/>}
       </PaperProvider>
     </NavigationContainer>
     </SafeAreaProvider>
