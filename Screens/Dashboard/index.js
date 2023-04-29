@@ -1,40 +1,65 @@
 import { StatusBar } from 'expo-status-bar';
+import { ActivityIndicator } from 'react-native-paper';
 import { View,Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Button } from 'react-native-paper';
+import Header from '../../components/ProfileHeader';
 import 'react-native-gesture-handler';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-
+import { createDrawerNavigator, DrawerContentScrollView } from '@react-navigation/drawer';
+import { DrawerItem, DrawerItemList } from '@react-navigation/drawer';
+import Passport from './Passport';
+import Profile from './Profile';
+import EditProfile from './EditProfile';
+import PaymentMethod from './PaymentMethod';
+const Drawer = createDrawerNavigator(); 
 const Values = (props) => {
   return (
     <View>
-      <Text>{JSON.stringify(props.info[0])}</Text>
+      <Text>{(props.info[0])}</Text>
       <Text>{JSON.stringify(props.info[1])}</Text>
       <Text>{JSON.stringify(props.info[2])}</Text>
     </View>
   );
 }
+
 const Dashboard = (props) => {
+  const {setChanged , changed} = props;
+  const {setOpened , Opened} = props;
+  if(props.info.length < 1) {
+    return (
+      <View style={{flex : 1 , justifyContent:'center', alignItems:'center'}}>
+        <ActivityIndicator animating={true}/>
+      </View>
+    );
+    }
+    const info = props.info;
+    const userId = props.UserId;
   return (
     <View style={{flex:1}}>
-    <Text>Dashboard</Text>
-    <Drawer.Navigator>
-      <Drawer.Screen name="Profile" component={Feed} />
-      <Drawer.Screen name="Passport" component={Article} />
-      <Drawer.Screen name="Payment" component={Article} />
-      {
-        //logout button
-      }
+    <Drawer.Navigator
+    screenOptions={{
+      header: ({ navigation }) => (
+      <Header navigation={navigation} setOpened={setOpened} Opened={Opened} />
+    ),
+    drawerPosition:"right",
+        }}
+         
+     initialRouteName="Profile" drawerContent={props => {
+    return (
+      <DrawerContentScrollView {...props}>
+        <DrawerItemList  {...props} />
+        <DrawerItem label="Back" onPress={() => setOpened(!Opened)} />
+        <DrawerItem label="Logout" onPress={() => {
+           AsyncStorage.clear();
+           setChanged(!changed)}} />
+      </DrawerContentScrollView>
+    )
+  }}>
+      <Drawer.Screen name="Profile" component={Profile} initialParams={{info}}/>
+      <Drawer.Screen name="EditProfile" component={EditProfile} options={{drawerItemStyle: {height: 0}}} initialParams={{info}}/>
+      <Drawer.Screen name="Passport" component={Passport} />
+      <Drawer.Screen name="Payment" initialParams={{info,userId}} component={PaymentMethod} />
     </Drawer.Navigator>
-    <Button title="Back" mode="outlined" onPress={() => props.setOpened(!props.Opened)} >
-      Back
-    </Button>
-    <Button title="Logout" mode="outlined" onPress={() => {
-      AsyncStorage.clear();
-      props.setChanged(!props.changed);
-    }} >
-      Logout
-    </Button>
+
     <StatusBar style="auto" />
     </View>
 

@@ -17,6 +17,10 @@ export default StyleSheet.create({
         marginTop: 5,
         marginRight: 20,
     },
+    burgerNav: {
+        marginTop: 13,
+        marginRight: 20,
+    },
     title: {
         marginTop: 5,
         marginLeft: 20,
