@@ -12,6 +12,8 @@ import colors from "../assets/StyleSheet/Colors";
 import { useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getAccountInfo } from "../data/LoginSignUp";
+import { ActivityIndicator } from 'react-native-paper';
+
 import Rewards from "./Rewards";
 const MainScreen = () => {
   return (
@@ -71,32 +73,35 @@ const Test = () => {
 const Home = (props) => {
   const [Opened, setOpened] = useState(false);
   const [info, setInfo] = useState([]);
-
+  const [UserId, setUserId] = useState("");
   useEffect(() => {
     async function fetchUserInfo() {
       const uidString = await AsyncStorage.getItem('user');
       const uid = JSON.parse(uidString);
+      setUserId(uid);
       const userAccountInfo = await getAccountInfo(uid);
       setInfo(userAccountInfo);
     }
     fetchUserInfo();
   }, []);
-  if(!info.length > 0) {
+  if(!info.length > 0||UserId == "") {
     return (
       <View style={{flex : 1 , justifyContent:'center', alignItems:'center'}}>
-        <Text>Loading...</Text>
+        <ActivityIndicator animating={true}/>
       </View>
     );
   }
   return (
     <View style={styles.container}>
-      <Header Opened={Opened} setOpened={setOpened} info={info} />
 
       <View style={{ flex: 1 }}>
         {Opened ? (
-          <Dashboard Opened={Opened} setOpened={setOpened} changed={props.changed} setChanged={props.setChanged} />
+          <Dashboard UserId={UserId} info={info} Opened={Opened} setOpened={setOpened} changed={props.changed} setChanged={props.setChanged} />
         ) : (
+          <View style={{flex:1}}>
+          <Header Opened={Opened} setOpened={setOpened} info={info} />
           <MainScreen />
+          </View>
         )}
       </View>
       <StatusBar style="auto" />

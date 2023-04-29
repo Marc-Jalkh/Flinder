@@ -1,0 +1,55 @@
+{
+    "rewards": [
+      {
+        "itemName": "Duty Free Gift Card",
+        "coins": 1000,
+        "image": ""
+      },
+      {
+        "itemName": "Upgrade to Business Class",
+        "coins": 5000,
+        "image": ""
+      },
+      {
+        "itemName": "Access to VIP Lounge",
+        "coins": 10000,
+        "image": ""
+      },
+      {
+        "itemName": "Weekend Getaway Package",
+        "coins": 20000,
+        "image": ""
+      },
+      {
+        "itemName": "Luxury Car Rental",
+        "coins": 50000,
+        "image": ""
+      },
+      {
+        "itemName": "Private Jet Charter",
+        "coins": 100000,
+        "image": ""
+      },
+      {
+        "itemName": "Diamond Membership",
+        "coins": 200000,
+        "image": ""
+      },
+      {
+        "itemName": "Yacht Rental",
+        "coins": 500000,
+        "image": ""
+      },
+      {
+        "itemName": "Island Vacation Package",
+        "coins": 750000,
+        "image": ""
+      },
+      {
+        "itemName": "Millionaire's Dream Package",
+        "coins": 1000000,
+        "image": ""
+      }
+    ]
+  }
+  

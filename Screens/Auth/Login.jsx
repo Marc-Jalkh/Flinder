@@ -1,5 +1,5 @@
 import { Text, View } from "react-native";
-import { TextInput, Button, Checkbox } from "react-native-paper";
+import { TextInput, Button } from "react-native-paper";
 import styles from "../../assets/StyleSheet/Auth";
 import React from "react";
 import colors from "../../assets/StyleSheet/Colors";
