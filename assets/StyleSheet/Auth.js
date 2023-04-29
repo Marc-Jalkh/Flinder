@@ -7,7 +7,7 @@ customFonts();
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.seconds,
+    backgroundColor: colors.white
   },
   SmallHeadingText: {
     fontSize: 20,
