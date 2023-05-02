@@ -1,16 +1,28 @@
 import {View , Text} from 'react-native';
 import { TextInput, Button, Avatar } from "react-native-paper";
 import styles from '../../assets/StyleSheet/Profile';
+import { customFonts } from '../../assets/StyleSheet/Colors';
+import React, { useState, useEffect } from 'react';
+
+customFonts();
+const timestamp = (date) => {
+    const dateArr = date.split('-');
+    const year = dateArr[0];
+    const month = dateArr[1];
+    const day = dateArr[2].split('T')[0];
+    return `${day}/${month}/${year}`;
+}
 const Profile = ({navigation, route}) => {
     const {info} = route.params;
-    return(
+    const BD = timestamp(JSON.stringify(info[2]));
+   return(
         <View style={styles.container}>
             <Text style={styles.Heading}>Profile</Text>
-            <Avatar.Image size={200} style={styles.Avatr} source={require('../../assets/img/logo.png')} />
+            <Avatar.Image size={150} style={styles.Avatr} source={require('../../assets/img/logo.png')} />
             <View style={styles.txtContainer}>
-            <Text style={styles.txt}>First Name: {info[0] }</Text>
-            <Text style={styles.txt}>Last Name: {info[1] }</Text>
-            <Text style={styles.txt}>Date Of Birth: { JSON.stringify(info[2])}</Text>
+            <Text style={styles.txt}><Text  style={{fontFamily:'Uncut-Sans-Medium'}}>First Name:</Text> { info[0] }</Text>
+            <Text style={styles.txt}><Text  style={{fontFamily:'Uncut-Sans-Medium'}}>Last Name:</Text> { info[1] }</Text>
+            <Text style={styles.txt}><Text  style={{fontFamily:'Uncut-Sans-Medium'}}>Date Of Birth:</Text> { BD}</Text>
             </View>
             <Button style={styles.btn} mode='outlined' onPress={() => navigation.navigate('EditProfile')}>Edit Profile</Button>
         </View>

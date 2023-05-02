@@ -29,6 +29,10 @@ export default function App() {
 
   const customTheme = {
     fonts: {
+      headlineSmall: {
+        fontFamily: 'Uncut-Sans-Medium',
+        fontWeight: 'normal',
+      },
       labelLarge: {
         fontFamily: 'UncutSansRegular',
         fontWeight: 'normal',

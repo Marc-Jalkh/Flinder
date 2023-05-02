@@ -30,7 +30,6 @@ async function AccountInfo(id,info){
 }
 export async function EditProf(id,number,name,expiry,cvc,info){
   const db = getFirestore(app);
-  console.log(info[1]);
 
   const docRef = setDoc(doc(db, "UserIdInfo", id), {
     FirstName: info[0],
