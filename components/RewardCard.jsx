@@ -1,13 +1,75 @@
+import { Alert } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { View,Text,Image } from "react-native";
 import { StyleSheet } from "react-native";
+import { ImageBackground } from "react-native-web";
+import { customFonts } from "../assets/StyleSheet/Colors";
+import colors from "../assets/StyleSheet/Colors";
+customFonts();
+import React from "react";
+import { Portal,Dialog,Button } from "react-native-paper";
+import { EditProf } from "../data/LoginSignUp";
+
 const RewardCard = (props) => {
+    function HandlePress(){
+        if(props.info[3]<props.coins)
+            showDialog2();
+        else{
+            showDialog();
+        }
+    }
+    function Redeem(){
+        EditProf(props.UserId,props.info[4][0],props.info[4][1],props.info[4][2],props.info[4][3],[props.info[0],props.info[1],props.info[2],props.info[3]-props.coins]);
+        Alert.alert("Congratulations!","You have successfully redeemed your reward.");
+        props.setChange(!props.change);
+        //call the parent function to update the state
+        hideDialog();
+    }
+    const textColor = colors.primary;
+    const [visible, setVisible] = React.useState(false);
+
+    const showDialog = () => setVisible(true);
+  
+    const hideDialog = () => setVisible(false);
+    const [visible2, setVisible2] = React.useState(false);
+
+    const showDialog2 = () => setVisible2(true);
+  
+    const hideDialog2 = () => setVisible2(false);
     return (
-        <View style={{flex:1,backgroundColor:"red"}}>
-            <View >
-            <Image source={props.image} />
-            <Text>{props.coins}</Text>
+        <View style={{flex:1}} >
+        <TouchableOpacity onPress={()=>HandlePress()} >
+            <Image source={require('../assets/img/logo.png')} style={{width:"100%",height:150,borderRadius:20}} />
+            <View style={{position:'absolute',backgroundColor:'#fffd',height:50,marginTop:93,width:'92%',marginLeft:'4%',borderRadius:'15%'}}>
+            <View style={{marginLeft:10,marginRight:10,marginTop:2}}>
+            <Text style={{fontFamily:'Uncut-Sans-Bold',lineHeight:16,textAlign:"center",color:colors.black}}>{props.itemName}</Text>
+            <Text style={{textAlign:"center" , color:textColor}} >{props.coins}</Text></View>
             </View>
-            <Text>{props.itemName}</Text>
+            </TouchableOpacity>
+            <Portal>
+          <Dialog visible={visible} onDismiss={hideDialog}>
+            <Dialog.Title style={{color:colors.primary}}>Alert!</Dialog.Title>
+            <Dialog.Content>
+              <Text variant="bodyMedium">By clicking on the redeem button you agree to the terms and services of the app and you will not be able to refund the coins after redeeming the reward.</Text>
+            </Dialog.Content>
+            <Dialog.Actions>
+            <Button onPress={hideDialog}>Cancel</Button>
+            <Button onPress={Redeem}>Redeem</Button>
+            </Dialog.Actions>
+          </Dialog>
+          </Portal>
+          <Portal>
+          <Dialog visible={visible2} onDismiss={hideDialog2}>
+            <Dialog.Title style={{color:'red'}}>Alert!</Dialog.Title>
+            <Dialog.Content>
+              <Text variant="bodyMedium">You don't have enough coins to buy this reward.</Text>
+            </Dialog.Content>
+            <Dialog.Actions>
+            <Button onPress={hideDialog2}>Done</Button>
+            </Dialog.Actions>
+          </Dialog>
+          </Portal>
+
         </View>
     );
 }

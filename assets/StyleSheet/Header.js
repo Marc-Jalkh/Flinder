@@ -6,6 +6,7 @@ customFonts();
 
 export default StyleSheet.create({
     container: {
+        backgroundColor: colors.white,
         flexDirection: 'row',
         height: 50,
     },

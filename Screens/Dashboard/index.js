@@ -33,6 +33,7 @@ const Dashboard = (props) => {
     }
     const info = props.info;
     const userId = props.UserId;
+    const setInfo = props.setInfo
   return (
     <View style={{flex:1}}>
     <Drawer.Navigator
@@ -55,9 +56,9 @@ const Dashboard = (props) => {
     )
   }}>
       <Drawer.Screen name="Profile" component={Profile} initialParams={{info}}/>
-      <Drawer.Screen name="EditProfile" component={EditProfile} options={{drawerItemStyle: {height: 0}}} initialParams={{info}}/>
+      <Drawer.Screen name="EditProfile" component={EditProfile} options={{drawerItemStyle: {height: 0}}} initialParams={{info,setInfo,userId}}/>
       <Drawer.Screen name="Passport" component={Passport} />
-      <Drawer.Screen name="Payment" initialParams={{info,userId}} component={PaymentMethod} />
+      <Drawer.Screen name="Payment" initialParams={{info,setInfo,userId}} component={PaymentMethod} />
     </Drawer.Navigator>
 
     <StatusBar style="auto" />

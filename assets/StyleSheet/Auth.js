@@ -12,7 +12,7 @@ export default StyleSheet.create({
   SmallHeadingText: {
     fontSize: 20,
     marginTop: 40,
-    marginLeft: 20,
+    marginLeft: 35,
     color: colors.black,
     fontFamily: 'UncutSansRegular',
   },

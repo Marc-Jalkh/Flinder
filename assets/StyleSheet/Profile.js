@@ -6,11 +6,11 @@ customFonts();
 export default StyleSheet.create({
     container: {
         flex:1,
-        backgroundColor: colors.tertiary,
+        backgroundColor: colors.white,
         alignItems: 'center',
     },
     Heading: {
-        marginTop: 20,
+        marginTop: 15,
         fontSize: 35,
         fontFamily: 'Uncut-Sans-Bold',
     },
@@ -18,12 +18,19 @@ export default StyleSheet.create({
         marginTop: 20,
         marginBottom: 20,
     },
+    PayCard:{
+        marginTop: 20,
+        marginBottom: 20,
+        height: 150,
+        objectFit: 'contain',
+    },
     txtContainer:{
+        width:'80%',
         flex:1,
         marginTop:20,
     },
     txt:{
-        marginBottom: 2,
+        marginBottom: 5,
         fontSize: 20,
         fontFamily: 'UncutSansRegular',
     },
