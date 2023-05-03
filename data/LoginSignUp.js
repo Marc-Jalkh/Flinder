@@ -4,6 +4,8 @@ import { createUserWithEmailAndPassword,signInWithEmailAndPassword } from "fireb
 import firebaseConfig from './Connection.js';
 import { Timestamp, doc, getFirestore, setDoc,getDoc } from "firebase/firestore";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getStorage } from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 const app = initializeApp(firebaseConfig);
 async function signUp(email, password, checked,info,setChanged,changed) {
@@ -27,6 +29,7 @@ async function AccountInfo(id,info){
     coins : 0,
     Payment: [],
     Location: info.Location,
+    ProfilePic: "gs://flindr-1f705.appspot.com/avatar.jpg",
   });
 }
 export async function EditProf(id,number,name,expiry,cvc,info){
@@ -39,23 +42,25 @@ export async function EditProf(id,number,name,expiry,cvc,info){
     coins : info[3],
     Payment: [number,name,expiry,cvc],
     Location: info[4],
+    ProfilePic: info[5],
   });
 }
 
 
 class User{
 
-  constructor(FirstName,LastName,DateOfBirth,coins,Payment,Location){
+  constructor(FirstName,LastName,DateOfBirth,coins,Payment,Location,ProfilePic){
     this.FirstName=FirstName;
     this.LastName=LastName;
     this.DateOfBirth=DateOfBirth;
     this.coins=coins;
     this.Payment=Payment;
     this.Location=Location;
+    this.ProfilePic=ProfilePic;
   }
 
   toString(){
-    return this.FirstName + " " + this.LastName + " " + this.DateOfBirth+ " " + this.coins+ " " + this.Payment[0]+ " " + this.Payment[1]+ " " + this.Payment[2]+ " " + this.Payment[3];
+    return this.FirstName + " " + this.LastName + " " + this.DateOfBirth+ " " + this.coins+ " " + this.Payment[0]+ " " + this.Payment[1]+ " " + this.Payment[2]+ " " + this.Payment[3]+ " " + this.Location+ " " + this.ProfilePic;
   }
 }
 const UserConverter = {
@@ -67,11 +72,12 @@ const UserConverter = {
       coins : user.coins,
       Payment: user.Payment,
       Location: user.Location,
+      ProfilePic: user.ProfilePic,
     };
   },
   fromFirestore: (snapshot, options) => {
     const data = snapshot.data(options);
-    return new User(data.FirstName, data.LastName, data.DateOfBirth, data.coins,data.Payment,data.Location);
+    return new User(data.FirstName, data.LastName, data.DateOfBirth, data.coins,data.Payment,data.Location,data.ProfilePic);
   }
 }
 export async function getAccountInfo(id){
@@ -80,8 +86,8 @@ export async function getAccountInfo(id){
   const docSnap = await getDoc(docRef);
   if (docSnap.exists()) {
     const data = docSnap.data();
-    
-    return [data.FirstName, data.LastName, data.DateOfBirth.toDate(),data.coins,data.Payment,data.Location];
+    const profilePicture= await getImage(data.ProfilePic);
+    return [data.FirstName, data.LastName, data.DateOfBirth.toDate(),data.coins,data.Payment,data.Location,profilePicture];
   } else {
     // doc.data() will be undefined in this case
     console.log("No such document!");
@@ -104,5 +110,59 @@ export function signIn(email,password,checked,setChanged,changed,errorCallback){
             });
 
 }
+
+export async function getImage(Avatar){
+  const storage = getStorage(app);
+
+  const storageRef = ref(storage, Avatar);
+  const imgUrl = await getDownloadURL(storageRef)
+  .then((url) => {
+    return url;
+  })
+  .catch((error) => {
+    // Handle any errors
+  });
+  return imgUrl; 
+}
+export async function uploadImage(file,uid,passport){
+  //get the file from the url
+  const uploadedImg = await fetch(file);
+  const blob = await uploadedImg.blob();
+  //upload the file to firebase storage
+  const storage = getStorage(app);
+  let urlImg = "";
+  const storageRef = ref(storage, "gs://flindr-1f705.appspot.com/"+passport+uid);
+  const uploadTask = uploadBytesResumable(storageRef, blob);
+  uploadTask.on('state_changed',
+  (snapshot) => {
+    // Observe state change events such as progress, pause, and resume
+    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    console.log('Upload is ' + progress + '% done');
+    switch (snapshot.state) {
+      case 'paused':
+        console.log('Upload is paused');
+        break;
+      case 'running':
+        console.log('Upload is running');
+        break;
+    }
+  },
+  (error) => {
+    // Handle unsuccessful uploads
+  },
+  () => {
+    // Handle successful uploads on complete
+    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+    imgUrl= getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+      console.log('File available at', downloadURL);
+      return downloadURL;
+    });
+  }
+);
+return imgUrl;
+}
+
+
 
 export default signUp;

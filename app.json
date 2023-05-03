@@ -26,11 +26,26 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "permissions": {
+      "camera": {
+        "status": "granted"
+      },
+      "mediaLibrary": {
+        "writeOnly": true,
+        "status": "granted"
+      }
+    },
     "plugins": [
       [
         "expo-location",
         {
           "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
       ]
     ]

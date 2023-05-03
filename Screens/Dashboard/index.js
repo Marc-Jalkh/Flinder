@@ -57,7 +57,7 @@ const Dashboard = (props) => {
   }}>
       <Drawer.Screen name="Profile" component={Profile} initialParams={{info}}/>
       <Drawer.Screen name="EditProfile" component={EditProfile} options={{drawerItemStyle: {height: 0}}} initialParams={{info,setInfo,userId}}/>
-      <Drawer.Screen name="Passport" component={Passport} />
+      <Drawer.Screen name="Passport" initialParams={{info,setInfo,userId}} component={Passport} />
       <Drawer.Screen name="Payment" initialParams={{info,setInfo,userId}} component={PaymentMethod} />
     </Drawer.Navigator>
 
