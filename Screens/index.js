@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getAccountInfo } from "../data/LoginSignUp";
 import { ActivityIndicator } from 'react-native-paper';
+import Search from "./Search";
 
 import Rewards from "./Rewards";
 const MainScreen = (props) => {
@@ -39,7 +40,7 @@ const MainScreen = (props) => {
       />
       <Tab.Screen
         name="Browse"
-        component={Auth}
+        component={Search}
         options={{
           tabBarLabel: "Browse",
           tabBarIcon: ({ color }) => (
