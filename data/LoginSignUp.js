@@ -48,6 +48,14 @@ export async function EditProf(id,number,name,expiry,cvc,info){
   });
 }
 
+export async function ProfileFlights(id,flights){
+  const db = getFirestore(app);
+
+  const docRef = updateDoc(doc(db, "UserIdInfo", id), {
+    Flights: flights
+  });
+}
+
 class User{
 
   constructor(FirstName,LastName,DateOfBirth,coins,Payment,Location,ProfilePic,Flights){
