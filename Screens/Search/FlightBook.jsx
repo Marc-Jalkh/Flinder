@@ -3,12 +3,20 @@ import { View, Text, Image, ScrollView } from 'react-native';
 import ticket from '../../assets/ticket.png';
 import { Button } from 'react-native-paper';
 import styles from '../../assets/StyleSheet/BookStyles.js';
-
+import { ProfileFlights } from '../../data/LoginSignUp';
 
 
 function FlightBook({ route, navigation }) {
 
     const Data = route.params.props;
+
+    const HandlePress = async () => {
+       try{ await ProfileFlights(Data.Id,Data);
+       }
+       catch(e){
+           alert(e);
+       }
+    }
 
     return (
         <ScrollView>
@@ -64,7 +72,7 @@ function FlightBook({ route, navigation }) {
                     <Button
                         icon="check"
                         style={styles.ConfirmButton}
-
+                        onPress={() => HandlePress()}
                     >Confirm Booking</Button>
 
                 </View>

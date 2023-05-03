@@ -16,13 +16,15 @@ function Acom ()  {
 
 const Stack = createStackNavigator();
 
-function Search() {
+function Search({ navigation,route}) {
+    const {UserId} = route.params;
+
     return (
         <NavigationContainer independent={true}>
             <Stack.Navigator initialRouteName="Search">
-                <Stack.Screen name="Search" component={SearchFrom} options={{headerShown: false}} />
+                <Stack.Screen name="Search" initialParams={{UserId}} component={SearchFrom} options={{headerShown: false}} />
                 <Stack.Screen name="Browse" component={FlightBrowse} options={{headerShown: false}}/>
-                <Stack.Screen name="Book" component={FlightBook}  options={{headerShown: false}}/>
+                <Stack.Screen name="Book"  component={FlightBook}  options={{headerShown: false}}/>
             </Stack.Navigator>
         </NavigationContainer>
     );

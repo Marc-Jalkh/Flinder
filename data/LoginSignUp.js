@@ -50,9 +50,23 @@ export async function EditProf(id,number,name,expiry,cvc,info){
 
 export async function ProfileFlights(id,flights){
   const db = getFirestore(app);
-
-  const docRef = updateDoc(doc(db, "UserIdInfo", id), {
-    Flights: flights
+  let FlyingArray = await getAccountInfo(id);
+  if(FlyingArray[7] == undefined){
+    FlyingArray[7] = [flights];
+  }
+  else{
+    //check if the flight is already in the array
+    for(let i = 0; i < FlyingArray[7].length; i++){
+      if(FlyingArray[7][i].time == flights.time && FlyingArray[7][i].PlaneCode == flights.PlaneCode){
+        throw "Flight already Booked";
+        return;
+      }
+    }
+    FlyingArray[7].push(flights);
+  }
+  const docRef =  updateDoc(doc(db, "UserIdInfo", id), {
+    Flights: FlyingArray[7],
+    coins: FlyingArray[3] + flights.price *100
   });
 }
 
