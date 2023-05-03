@@ -4,9 +4,9 @@ import icon from '../../assets/airplane-icon.png';
 import styles from '../../assets/StyleSheet/BrowseStyles';
 import { TouchableOpacity } from 'react-native';
 
+const FlightCard = ({ UserId, props, search_info, navigation}) => {
 
-const FlightCard = ({ props, search_info, navigation}) => {
-
+  const id = UserId;
   const AirlineName = props.slice_data.slice_0.airline.name;
   const AirlineLogo = props.slice_data.slice_0.airline.logo;
   const OriginCode = search_info.origin.code;
@@ -32,6 +32,7 @@ const FlightCard = ({ props, search_info, navigation}) => {
     logo: AirlineLogo,
     PlaneCode: PlaneCode,
     cabin_class: cabin_class,
+    Id: id,
   }
 
   
@@ -103,6 +104,7 @@ const FlightCard = ({ props, search_info, navigation}) => {
 
 const FlightBrowse = ({route, navigation}) => {
   const data = (route.params.result);
+  const UserId = route.params.UserId;
   const itineraryData = data.getAirFlightRoundTrip.results.result.itinerary_data;
   return (
       <ScrollView>
@@ -116,7 +118,7 @@ const FlightBrowse = ({route, navigation}) => {
 
           <View style={styles.FlightCards}>
             {Object.keys(itineraryData).map((itinerary, i) => {
-              return <FlightCard key={i} props={itineraryData[itinerary]} navigation={navigation} search_info={data.getAirFlightRoundTrip.results.result.search_data.search_0} />
+              return <FlightCard UserId={UserId} key={i} props={itineraryData[itinerary]} navigation={navigation} search_info={data.getAirFlightRoundTrip.results.result.search_data.search_0} />
             })}
           </View>
 

@@ -26,8 +26,8 @@ const options = {
 };
 
 
-function SearchFrom({ navigation }) {
-
+function SearchFrom({ navigation,route }) {
+  const {UserId} = route.params;
   async function CallApi(data) {
     const { business, Economy, from: { id: fromId, title: fromTitle }, to: { id: toId, title: toTitle }, departure, arrival, adults } = data;
 
@@ -41,7 +41,7 @@ function SearchFrom({ navigation }) {
       const Jsonresult = JSON.parse(result)
 
       if (Jsonresult.getAirFlightRoundTrip.results != undefined)
-        navigation.navigate({ name: 'Browse', params: { result: Jsonresult }, merge: true })
+        navigation.navigate({ name: 'Browse', params: { result: Jsonresult,UserId: UserId }, merge: true })
       else alert("No flights found")
 
       setLoading(false)

@@ -42,6 +42,7 @@ const MainScreen = (props) => {
       <Tab.Screen
         name="Browse"
         component={Search}
+        initialParams={{UserId}}
         options={{
           tabBarLabel: "Browse",
           tabBarIcon: ({ color }) => (
