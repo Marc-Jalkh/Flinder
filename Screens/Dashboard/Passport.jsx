@@ -24,20 +24,18 @@ const Passport = ({navigation, route}) => {
     
    return(
     <View>
-            <ScrollView>
+        <ScrollView>
             <View style={styles.container}>
             <Text style={styles.Heading}>Passport</Text>
             <Avatar.Image size={150} style={styles.Avatr} source={{uri:info[6]}} />
             <View style={styles.txtContainer}>
-
             <Image source={{uri:info[6]}} style={{width:300,height:1000}} />
             <Text style={styles.txt}>To Change your passport picture click on it and select a new one !</Text>
             </View>
             <Button style={styles.btn} mode='outlined' onPress={() => navigation.navigate('EditProfile')}>Save</Button>
             </View>
-            </ScrollView>
-
-            </View>
+        </ScrollView>
+    </View>
 );
 }
 

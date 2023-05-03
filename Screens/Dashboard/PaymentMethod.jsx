@@ -15,11 +15,12 @@ const PaymentMethod = ({navigation, route}) => {
     const [name,setname] = useState(info[4][1]);
     const [cvv,setcvv] = useState(info[4][3]);
     let time = []
-    if(info[4]){
-        time = info[4][2].split('-')
-    }
-    const [ExpMonth,HandleMnth] = useState(time[0]);
-    const [ExpYear,HandleYear] = useState(time[1]);
+    //if array empty
+    if(info[4][2] != undefined){
+         time = info[4][2].split('-')
+   }
+    const [ExpMonth,HandleMnth] = useState(time[1]);
+    const [ExpYear,HandleYear] = useState(time[0]);
 
     const [showPic,setshowPic] = useState(true);
 
@@ -57,7 +58,7 @@ const PaymentMethod = ({navigation, route}) => {
             setsuccess(true);
             return;
         }
-        setInfo([info[0],info[1],info[2],info[3],[Cnb,name,(ExpYear+'-'+ExpMonth),cvv],info[4]]);
+        setInfo([info[0],info[1],info[2],info[3],[Cnb,name,(ExpYear+'-'+ExpMonth),cvv],info[5],info[6]]);
         EditProf( userId,Cnb,name,(ExpYear+'-'+ExpMonth),cvv,info);
         setsuccess(true);
         setmsg("Saved Successfully");

@@ -30,8 +30,8 @@ const EditProfile = ({navigation, route}) => {
       [setOpen, setDate]
     );
     function HandlePress(){
-        EditProf(userId,info[4][0],info[4][1],info[4][2],info[4][3],[Fname,Lname,date,info[3],loca,image]);
-        setInfo([Fname,Lname,date,info[3],info[4],loca,image]);
+      setInfo([Fname,Lname,date,info[3],info[4],loca,image]);
+      EditProf(userId,info[4][0],info[4][1],info[4][2],info[4][3],[Fname,Lname,date,info[3],info[4],loca,image]);
         navigation.navigate('Profile', {info: [Fname,Lname,date,info[3],info[4],loca,image]} )
     }
 

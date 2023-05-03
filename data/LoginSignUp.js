@@ -29,7 +29,7 @@ async function AccountInfo(id,info){
     coins : 0,
     Payment: [],
     Location: info.Location,
-    ProfilePic: "gs://flindr-1f705.appspot.com/avatar.jpg",
+    ProfilePic: "gs://flindr-1f705.appspot.com/avatar.jpg"
   });
 }
 export async function EditProf(id,number,name,expiry,cvc,info){
@@ -41,8 +41,8 @@ export async function EditProf(id,number,name,expiry,cvc,info){
     DateOfBirth: Timestamp.fromDate(new Date(info[2])) ,
     coins : info[3],
     Payment: [number,name,expiry,cvc],
-    Location: info[4],
-    ProfilePic: info[5],
+    Location: info[5],
+    ProfilePic: info[6],
   });
 }
 

@@ -10,6 +10,7 @@ import Passport from './Passport';
 import Profile from './Profile';
 import EditProfile from './EditProfile';
 import PaymentMethod from './PaymentMethod';
+import { Dimensions } from 'react-native';
 const Drawer = createDrawerNavigator(); 
 const Values = (props) => {
   return (
@@ -48,16 +49,22 @@ const Dashboard = (props) => {
     return (
       <DrawerContentScrollView {...props}>
         <DrawerItemList  {...props} />
-        <DrawerItem label="Back" onPress={() => setOpened(!Opened)} />
-        <DrawerItem label="Logout" onPress={() => {
-           AsyncStorage.clear();
-           setChanged(!changed)}} />
-      </DrawerContentScrollView>
+        <View style={{flex: 1,height:Dimensions.get('window').height-300}}>
+      <Text></Text>
+        </View>
+
+
+    <DrawerItem label="Back" onPress={() => setOpened(!Opened)} />
+    <DrawerItem label="Logout" onPress={() => {
+      AsyncStorage.clear();
+      setChanged(!changed)
+    }} />
+
+        </DrawerContentScrollView>
     )
   }}>
       <Drawer.Screen name="Profile" component={Profile} initialParams={{info}}/>
       <Drawer.Screen name="EditProfile" component={EditProfile} options={{drawerItemStyle: {height: 0}}} initialParams={{info,setInfo,userId}}/>
-      <Drawer.Screen name="Passport" initialParams={{info,setInfo,userId}} component={Passport} />
       <Drawer.Screen name="Payment" initialParams={{info,setInfo,userId}} component={PaymentMethod} />
     </Drawer.Navigator>
 
