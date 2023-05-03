@@ -11,7 +11,7 @@ const Header = ({ navigation, Opened, setOpened }) => {
     <SafeAreaView edges={["top", "left", "right"]}>
       <View style={styles.container}>
         <View style={{ flex: 1 }} >
-          <Text style={styles.title}  onPress={() => setOpened(!Opened)}>Flinder</Text>
+          <Text style={styles.title}><Text onPress={() => setOpened(!Opened)}>Flinder</Text></Text>
         </View>
         <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
           <Icon name="bars" style={styles.burgerNav} size={30} color={colors.black} />

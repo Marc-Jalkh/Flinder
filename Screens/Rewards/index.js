@@ -1,5 +1,4 @@
 import { View,StyleSheet } from "react-native";
-import { AutocompleteDropdown } from 'react-native-autocomplete-dropdown';
 import colors from "../../assets/StyleSheet/Colors";
 import {rewards} from "../../data/Rewards.json";
 import RewardCard from "../../components/RewardCard";
@@ -12,18 +11,7 @@ const Rewards = ({navigation, route}) => {
         <View style={styles.container}>
             <ScrollView>
             <View style={styles.subContainer}>
-                <AutocompleteDropdown
-                    label="Search"
-                    data={rewards}
-                    valueExtractor={(item) => item.name}
-                    onChangeText={(item) => console.log(item)}
-                    placeholder="Search"
-                    style={styles.input}
-                    inputStyle={styles.inputText}
-                    listStyle={styles.list}
-                    listTextStyle={styles.listText}
-                    listRowStyle={styles.listRow}
-                    />
+
             <View style={{flexDirection:'row',flexWrap:'wrap',marginTop:10}}>
             {
                 rewards.map((item,index) => {
@@ -47,7 +35,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
     },
     subContainer: {
-        marginTop: 10,
+        marginTop: 20,
         marginLeft: 15,
         marginRight: 15,
 

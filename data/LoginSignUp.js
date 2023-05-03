@@ -26,6 +26,7 @@ async function AccountInfo(id,info){
     DateOfBirth: Timestamp.fromDate(new Date(info.DateOfBirth)) ,
     coins : 0,
     Payment: [],
+    Location: info.Location,
   });
 }
 export async function EditProf(id,number,name,expiry,cvc,info){
@@ -37,23 +38,24 @@ export async function EditProf(id,number,name,expiry,cvc,info){
     DateOfBirth: Timestamp.fromDate(new Date(info[2])) ,
     coins : info[3],
     Payment: [number,name,expiry,cvc],
-
+    Location: info[4],
   });
 }
 
 
 class User{
 
-  constructor(FirstName,LastName,DateOfBirth,coins,Payment){
+  constructor(FirstName,LastName,DateOfBirth,coins,Payment,Location){
     this.FirstName=FirstName;
     this.LastName=LastName;
     this.DateOfBirth=DateOfBirth;
     this.coins=coins;
     this.Payment=Payment;
+    this.Location=Location;
   }
 
   toString(){
-    return this.FirstName + " " + this.LastName + " " + this.DateOfBirth+ " " + this.coins+ " " + this.Payment[0];
+    return this.FirstName + " " + this.LastName + " " + this.DateOfBirth+ " " + this.coins+ " " + this.Payment[0]+ " " + this.Payment[1]+ " " + this.Payment[2]+ " " + this.Payment[3];
   }
 }
 const UserConverter = {
@@ -64,11 +66,12 @@ const UserConverter = {
       DateOfBirth: user.DateOfBirth,
       coins : user.coins,
       Payment: user.Payment,
+      Location: user.Location,
     };
   },
   fromFirestore: (snapshot, options) => {
     const data = snapshot.data(options);
-    return new User(data.FirstName, data.LastName, data.DateOfBirth, data.coins,data.Payment);
+    return new User(data.FirstName, data.LastName, data.DateOfBirth, data.coins,data.Payment,data.Location);
   }
 }
 export async function getAccountInfo(id){
@@ -78,7 +81,7 @@ export async function getAccountInfo(id){
   if (docSnap.exists()) {
     const data = docSnap.data();
     
-    return [data.FirstName, data.LastName, data.DateOfBirth.toDate(),data.coins,data.Payment];
+    return [data.FirstName, data.LastName, data.DateOfBirth.toDate(),data.coins,data.Payment,data.Location];
   } else {
     // doc.data() will be undefined in this case
     console.log("No such document!");

@@ -7,9 +7,11 @@ import React, { useState, useEffect } from 'react';
 customFonts();
 const timestamp = (date) => {
     const dateArr = date.split('-');
-    const year = dateArr[0];
+    let year = dateArr[0];
     const month = dateArr[1];
     const day = dateArr[2].split('T')[0];
+    //remove first digit of year
+    year = year.slice(1,5);
     return `${day}/${month}/${year}`;
 }
 const Profile = ({navigation, route}) => {
@@ -23,6 +25,7 @@ const Profile = ({navigation, route}) => {
             <Text style={styles.txt}><Text  style={{fontFamily:'Uncut-Sans-Medium'}}>First Name:</Text> { info[0] }</Text>
             <Text style={styles.txt}><Text  style={{fontFamily:'Uncut-Sans-Medium'}}>Last Name:</Text> { info[1] }</Text>
             <Text style={styles.txt}><Text  style={{fontFamily:'Uncut-Sans-Medium'}}>Date Of Birth:</Text> { BD}</Text>
+            <Text style={styles.txt}><Text  style={{fontFamily:'Uncut-Sans-Medium'}}>Location:</Text> { info[5]}</Text>
             </View>
             <Button style={styles.btn} mode='outlined' onPress={() => navigation.navigate('EditProfile')}>Edit Profile</Button>
         </View>

@@ -57,7 +57,7 @@ const PaymentMethod = ({navigation, route}) => {
             setsuccess(true);
             return;
         }
-        setInfo([info[0],info[1],info[2],info[3],[Cnb,name,(ExpYear+'-'+ExpMonth),cvv]]);
+        setInfo([info[0],info[1],info[2],info[3],[Cnb,name,(ExpYear+'-'+ExpMonth),cvv],info[4]]);
         EditProf( userId,Cnb,name,(ExpYear+'-'+ExpMonth),cvv,info);
         setsuccess(true);
         setmsg("Saved Successfully");
