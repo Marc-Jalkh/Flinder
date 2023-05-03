@@ -1,8 +1,8 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { getAuth, updateCurrentUser } from 'firebase/auth';
 import { createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
 import firebaseConfig from './Connection.js';
-import { Timestamp, doc, getFirestore, setDoc,getDoc } from "firebase/firestore";
+import { Timestamp, doc, getFirestore, setDoc,getDoc, updateDoc } from "firebase/firestore";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getStorage } from "firebase/storage";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -29,13 +29,15 @@ async function AccountInfo(id,info){
     coins : 0,
     Payment: [],
     Location: info.Location,
-    ProfilePic: "gs://flindr-1f705.appspot.com/avatar.jpg"
+    ProfilePic: "gs://flindr-1f705.appspot.com/avatar.jpg",
+    Flights:{}
   });
+
 }
 export async function EditProf(id,number,name,expiry,cvc,info){
   const db = getFirestore(app);
 
-  const docRef = setDoc(doc(db, "UserIdInfo", id), {
+  const docRef = updateDoc(doc(db, "UserIdInfo", id), {
     FirstName: info[0],
     LastName: info[1],
     DateOfBirth: Timestamp.fromDate(new Date(info[2])) ,
@@ -46,10 +48,9 @@ export async function EditProf(id,number,name,expiry,cvc,info){
   });
 }
 
-
 class User{
 
-  constructor(FirstName,LastName,DateOfBirth,coins,Payment,Location,ProfilePic){
+  constructor(FirstName,LastName,DateOfBirth,coins,Payment,Location,ProfilePic,Flights){
     this.FirstName=FirstName;
     this.LastName=LastName;
     this.DateOfBirth=DateOfBirth;
@@ -57,6 +58,7 @@ class User{
     this.Payment=Payment;
     this.Location=Location;
     this.ProfilePic=ProfilePic;
+    this.Flights=Flights;
   }
 
   toString(){
@@ -73,11 +75,12 @@ const UserConverter = {
       Payment: user.Payment,
       Location: user.Location,
       ProfilePic: user.ProfilePic,
+      Flights: user.Flights
     };
   },
   fromFirestore: (snapshot, options) => {
     const data = snapshot.data(options);
-    return new User(data.FirstName, data.LastName, data.DateOfBirth, data.coins,data.Payment,data.Location,data.ProfilePic);
+    return new User(data.FirstName, data.LastName, data.DateOfBirth, data.coins,data.Payment,data.Location,data.ProfilePic,data.Flights);
   }
 }
 export async function getAccountInfo(id){
@@ -87,7 +90,7 @@ export async function getAccountInfo(id){
   if (docSnap.exists()) {
     const data = docSnap.data();
     const profilePicture= await getImage(data.ProfilePic);
-    return [data.FirstName, data.LastName, data.DateOfBirth.toDate(),data.coins,data.Payment,data.Location,profilePicture];
+    return [data.FirstName, data.LastName, data.DateOfBirth.toDate(),data.coins,data.Payment,data.Location,profilePicture,data.Flights];
   } else {
     // doc.data() will be undefined in this case
     console.log("No such document!");

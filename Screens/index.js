@@ -14,6 +14,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getAccountInfo } from "../data/LoginSignUp";
 import { ActivityIndicator } from 'react-native-paper';
 import Search from "./Search";
+import MyFlights from "./MyFlights";
 
 import Rewards from "./Rewards";
 const MainScreen = (props) => {
@@ -62,7 +63,8 @@ const MainScreen = (props) => {
       />
       <Tab.Screen
         name="My Flights"
-        component={Auth}
+        component={MyFlights}
+        initialParams={{info,setInfo,UserId}}
         options={{
           tabBarLabel: "My Flights",
           tabBarIcon: ({ color }) => (
