@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
 import colors from './Colors.js';
-import * as Font from 'expo-font';
 import { customFonts } from "./Colors.js";
 
 const fontNames = {
@@ -29,11 +28,11 @@ const styles = StyleSheet.create({
   {
       alignItems: 'center',
       backgroundColor: colors.black,
-      padding: 30,
+      height: 79,
   },
   TextTitle:
   {
-      fontSize: 35,
+      fontSize: 30,
       marginTop: '5%',
       color: colors.white,
       fontFamily: fontNames.bold,
