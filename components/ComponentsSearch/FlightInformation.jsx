@@ -24,13 +24,13 @@ const FlightInformation = ({ props }) => {
               initialValue={{ id: 'BEY' }}
               onSelectItem={setFrom}
               dataSet={datas}
-              suggestionsListMaxHeight={180}
+              suggestionsListMaxHeight={130}
             />
   
           </View>
   
   
-          <View style={{ marginTop: '10%', width: '100%', zIndex: 9 }}>
+          <View style={{ marginTop: '5%', width: '100%', zIndex: 9 }}>
   
             <Text styles={styles.FormText}>Arriving airport</Text>
   
@@ -42,13 +42,13 @@ const FlightInformation = ({ props }) => {
               initialValue={{ id: 'NCE' }}
               onSelectItem={setTo}
               dataSet={datas}
-              suggestionsListMaxHeight={100}
+              suggestionsListMaxHeight={70}
             />
   
           </View>
   
           
-          <View style={{ marginTop: '10%', flex:1 }}>
+          <View style={{ marginTop: '5%', flex:1 }}>
   
   
             <TextInput
