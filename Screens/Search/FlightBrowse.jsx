@@ -19,6 +19,8 @@ const FlightCard = ({ props, search_info, navigation}) => {
   const ArrivalTime = props.slice_data.slice_0.arrival.datetime.time_12h;
   const Price = props.price_details.baseline_total_fare_per_ticket;
   const PriceSymbol = props.price_details.display_symbol
+  const PlaneCode = props.slice_data.slice_0.flight_data.flight_0.info.aircraft;
+  const cabin_class = props.slice_data.slice_0.flight_data.flight_0.info.cabin_class
 
   const DataForBook =
   {
@@ -27,6 +29,9 @@ const FlightCard = ({ props, search_info, navigation}) => {
     date: DepartureDate,
     time: DepartureTime,
     price: Price,
+    logo: AirlineLogo,
+    PlaneCode: PlaneCode,
+    cabin_class: cabin_class,
   }
 
   

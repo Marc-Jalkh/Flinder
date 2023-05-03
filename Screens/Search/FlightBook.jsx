@@ -6,7 +6,7 @@ import styles from '../../assets/StyleSheet/BookStyles.js';
 
 
 
-function FlightBook({route, navigation}) {
+function FlightBook({ route, navigation }) {
 
     const Data = route.params.props;
 
@@ -26,6 +26,20 @@ function FlightBook({route, navigation}) {
                 />
                 <View style={styles.BookingInfo}>
 
+                    <Image
+                        source={{ uri: Data.logo }}
+                        style={{ width: 80, height: 80, marginLeft: '37%', marginTop: '-10%', marginBottom: '10%', borderRadius: 50 }} />
+
+                    <View style={styles.BookingInfoLine}>
+                        <Text style={styles.BookingText}> Plane: </Text>
+                        <Text style={styles.BookingTextInfo}> {Data.PlaneCode} </Text>
+                    </View>
+
+                    <View style={styles.BookingInfoLine}>
+                        <Text style={styles.BookingText}> Cabin Class: </Text>
+                        <Text style={styles.BookingTextInfo}> {Data.cabin_class} </Text>
+                    </View>
+
                     <View style={styles.BookingInfoLine}>
                         <Text style={styles.BookingText}> Departing Airport:  </Text>
                         <Text style={styles.BookingTextInfo}> {Data.from} </Text>
@@ -36,25 +50,20 @@ function FlightBook({route, navigation}) {
                         <Text style={styles.BookingTextInfo}> {Data.to} </Text>
                     </View>
 
-
                     <Text style={styles.BookingText}> Departing Date:  </Text>
-                    <Text style={styles.BookingTextInfo}> {Data.date}{'\n'} </Text>
+                    <Text style={styles.BookingTextInfo}> {Data.date} </Text>
 
 
                     <Text style={styles.BookingText}> Departing Time: </Text>
-                    <Text style={styles.BookingTextInfo}> {Data.time}{'\n'} </Text>
+                    <Text style={styles.BookingTextInfo}> {Data.time} </Text>
+
+                    <Text style={styles.BookingText}> Price: </Text>
+                    <Text style={styles.BookingTextInfo}> {Data.price}$ </Text>
 
 
-                    <View style={{alignContent: 'center', marginLeft: '38%', marginTop: '20%'}}>
-
-                        <Text style={styles.BookingText}> Price: </Text>
-                        <Text style={styles.BookingTextInfo}> {Data.price}$ </Text>
-
-                    </View>
-
-                    <Button 
-                    icon="check" 
-                    style={styles.ConfirmButton}
+                    <Button
+                        icon="check"
+                        style={styles.ConfirmButton}
 
                     >Confirm Booking</Button>
 
@@ -63,9 +72,9 @@ function FlightBook({route, navigation}) {
 
             </View>
 
-        <View style={{marginTop: '30%'}}>
-            <Text>{'\n'}{'\n'}</Text>
-        </View>
+            <View style={{ marginTop: '30%' }}>
+                <Text>{'\n'}{'\n'}</Text>
+            </View>
 
         </ScrollView>
 

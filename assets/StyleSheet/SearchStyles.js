@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     backgroundColor: '#1F271B',
     width: '100%',
-    height: '10%'
+    height: 79,
   },
   HeaderTextStyle:
   {
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   {
     marginTop: '-8%',
     flexDirection: 'row',
-    height: '8%',
+    height: '10%',
   },
   IndevRadioView:
   {
