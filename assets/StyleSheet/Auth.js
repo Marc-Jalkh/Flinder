@@ -38,7 +38,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     marginRight: 20,
     marginLeft: 20,
-
+    marginTop: 20,
   },
   LoginRegisterScreen: {
     backgroundColor: colors.white,
@@ -51,4 +51,11 @@ export default StyleSheet.create({
   Register:{
     width: '90%',
   },
+  Locs:{
+    alignSelf:'left',
+    marginTop: 8,
+    fontFamily: 'UncutSansRegular',
+    fontSize:15,
+    color:colors.black
+  }
 });

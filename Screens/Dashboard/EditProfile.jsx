@@ -16,7 +16,7 @@ const EditProfile = ({navigation, route}) => {
 
     const [date, setDate] = React.useState(info[2]);
     const [open, setOpen] = React.useState(false);
-  
+    const [loca,setLoca] = useState(info[5]);
     const onDismissSingle = React.useCallback(() => {
       setOpen(false);
     }, [setOpen]);
@@ -29,16 +29,14 @@ const EditProfile = ({navigation, route}) => {
       [setOpen, setDate]
     );
     function HandlePress(){
-        EditProf(userId,info[4][0],info[4][1],info[4][2],info[4][3],[Fname,Lname,date,info[3]]);
-        setInfo([Fname,Lname,date,info[3],info[4]]);
-        navigation.navigate('Profile', {info: [Fname,Lname,date,info[3],info[4]]} )
+        EditProf(userId,info[4][0],info[4][1],info[4][2],info[4][3],[Fname,Lname,date,info[3],loca]);
+        setInfo([Fname,Lname,date,info[3],info[4],loca]);
+        navigation.navigate('Profile', {info: [Fname,Lname,date,info[3],info[4],loca]} )
     }
 
-    function HandleLoc(){
-       
     const [location,setLocation] = useState(null);
     const [errorMsg,setErrorMsg] = useState(null);
-
+    const [address,setAddress] = useState("");
     useEffect(() => {
         (async () => {
           
@@ -49,17 +47,25 @@ const EditProfile = ({navigation, route}) => {
           }
           
           let location = await Location.getCurrentPositionAsync({});
+          let address = await Location.reverseGeocodeAsync(location.coords);
           setLocation(location);
+          setAddress(address);
         })();
       }, []);
-    
+      
       let text = 'Waiting..';
       if (errorMsg) {
         text = errorMsg;
-      } else if (location) {
-        text = JSON.stringify(location['coords']);
+      } else if (address.length > 0) {
+        text = address[0].country+ ' '+ address[0].name;
       }
-    
+
+    HandleLoc = () => {
+      if(text==='Waiting..'){
+        alert('Please wait while we fetch your location');
+        return;
+      }
+      setLoca(text);
     }
 
     return(
@@ -92,7 +98,7 @@ const EditProfile = ({navigation, route}) => {
             uppercase={false}
             mode="outlined"
           >
-            Pick single date
+          Pick new Date
           </Button>
           <DatePickerModal
             locale="en"
@@ -102,6 +108,7 @@ const EditProfile = ({navigation, route}) => {
             date={date}
             onConfirm={onConfirmSingle}
           />
+            <Button style={{ borderRadius: "5px",marginTop: 10, textAlign:'left'}} textColor={colors.black} mode='outlined' onPress={() => HandleLoc()}>Set New location : {loca}</Button>
 
             </View>
             <Button style={styles.btn} mode='outlined' onPress={() => HandlePress()}>Save</Button>

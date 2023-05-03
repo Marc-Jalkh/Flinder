@@ -12,7 +12,7 @@ const Header = (props) => {
             <View style={{flex:1}}>
                 <Text style={styles.title}>Flinder</Text>
             </View>
-            <Text style={{marginTop: 20,marginRight:10}} ><Ionicons name="ios-cash" size={20} color={colors.secondary} /><Text style={{fontSize:18}}>:{props.info[3]}</Text></Text>
+            <Text style={{marginTop: 16,marginRight:10}} ><Ionicons name="ios-cash" size={20} color={colors.secondary} /><Text style={{fontSize:18}}>:{props.info[3]}</Text></Text>
             <TouchableOpacity onPress={() => props.setOpened(!props.Opened)}>
             <Avatar.Image style={styles.profile} size={40} source={require('../assets/img/logo.png')} />
             </TouchableOpacity>

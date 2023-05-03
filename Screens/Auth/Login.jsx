@@ -5,6 +5,9 @@ import React from "react";
 import colors from "../../assets/StyleSheet/Colors";
 import {signIn} from '../../data/LoginSignUp.js';
 import { ValidateEmail,ValidatePassword } from "../../data/Validator";
+import { Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { Avatar } from 'react-native-paper';
+
 const Register = ({ navigation ,route }) => {
   const {setChanged,changed} = route.params;
   const [text, setText] = React.useState("");
@@ -34,7 +37,11 @@ const Register = ({ navigation ,route }) => {
     });
   };
   return (
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+
     <View style={styles.container}>
+
+    <Avatar.Image size={150} style={{position:'absolute',marginTop:30, alignSelf:'center'}} source={require('../../assets/img/logo.png')} />
       <View style={styles.textBox}>
       <Text style={styles.error}>{error}</Text>
         <TextInput
@@ -69,6 +76,7 @@ const Register = ({ navigation ,route }) => {
         </Button>
       </View>
     </View>
+    </TouchableWithoutFeedback>
   );
 };
 
