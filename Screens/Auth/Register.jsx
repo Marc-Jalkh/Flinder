@@ -23,6 +23,7 @@ const Register = ({ navigation ,route }) => {
   const [loca, setLoca] = React.useState("");
   const [date, setDate] = React.useState(undefined);
   const [open, setOpen] = React.useState(false);
+  let newloc = 'Waiting..';
 
   const [showimg, setShowimg] = React.useState(true);
 
@@ -48,6 +49,9 @@ const Register = ({ navigation ,route }) => {
   };
   const [error, setError] = React.useState("");
   const [error2, setError2] = React.useState(dict);
+  const [location,setLocation] = React.useState(null);
+  const [errorMsg,setErrorMsg] = React.useState(null);
+  const [address,setAddress] = React.useState("");
 
   const HandlePress = () => {
     let errors = "";
@@ -90,9 +94,6 @@ const Register = ({ navigation ,route }) => {
     singUp(text, pass, checked, info, setChanged,changed,);
   };
   //location
-  const [location,setLocation] = React.useState(null);
-  const [errorMsg,setErrorMsg] = React.useState(null);
-  const [address,setAddress] = React.useState("");
   React.useEffect(() => {
       (async () => {
         
@@ -109,7 +110,7 @@ const Register = ({ navigation ,route }) => {
       })();
     }, []);
     
-    let newloc = 'Waiting..';
+    newloc = 'Waiting..';
     if (errorMsg) {
       newloc = errorMsg;
     } else if (address.length > 0) {
