@@ -1,17 +1,17 @@
 import { View, Text, ImageBackground, ScrollView } from "react-native";
 import { Button } from "react-native-paper";
-
+import styles from "../../assets/StyleSheet/MyFlightsStyles";
 const OnGoingFlights = (porps) => {
   return (
     <View>
       <ImageBackground
         source={require("../../assets/img/logo.png")}
-        style={{ width: "95%", height: 300, marginTop: 20 }}
+        style={styles.Imagecontainer}
       >
         <View style={{ flex: 1 }}>
           <Text></Text>
         </View>
-        <View style={{ height: 100, backgroundColor: "#fffb" }}>
+        <View style={styles.TextContainer}>
           <Text>Test</Text>
         </View>
       </ImageBackground>
@@ -37,7 +37,7 @@ const PastFlights = (porps) => {
 };
 const MyFlights = ({ navigation, route }) => {
   const { info, UserId } = route.params;
-  if (info[7] == {}) {
+  if (info[7] == []) {
     return (
       <View>
         <Text>You have no flights Yet!</Text>
@@ -46,7 +46,6 @@ const MyFlights = ({ navigation, route }) => {
   }
   return (
     <View style={{ backgroundColor: "white", flex: 1 }}>
-      <ScrollView>
         <Text>My Flights:</Text>
         <View style={{ marginLeft: "10%" }}>
           <OnGoingFlights />
@@ -59,7 +58,6 @@ const MyFlights = ({ navigation, route }) => {
         </ScrollView>
         </View>
       
-      </ScrollView>
 
     </View>
   );
