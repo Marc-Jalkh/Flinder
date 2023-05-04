@@ -25,6 +25,11 @@ const Values = (props) => {
 const Dashboard = (props) => {
   const {setChanged , changed} = props;
   const {setOpened , Opened} = props;
+  const {setChanging, changing} = props;
+  if(changing) {
+    setChanging(!changing);
+    setOpened(!Opened);
+  }
   if(props.info.length < 1) {
     return (
       <View style={{flex : 1 , justifyContent:'center', alignItems:'center'}}>
