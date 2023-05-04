@@ -15,6 +15,7 @@ import { getAccountInfo } from "../data/LoginSignUp";
 import { ActivityIndicator } from 'react-native-paper';
 import Search from "./Search";
 import MyFlights from "./MyFlights";
+import Radar from "./Radar";
 
 import Rewards from "./Rewards";
 const MainScreen = (props) => {
@@ -31,7 +32,7 @@ const MainScreen = (props) => {
     >
       <Tab.Screen
         name="Radar"
-        component={Auth}
+        component={Radar}
         options={{
           tabBarLabel: "Radar",
           tabBarIcon: ({ color }) => (
