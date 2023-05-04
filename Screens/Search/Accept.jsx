@@ -1,6 +1,7 @@
 import { View,Text } from "react-native"
 import { getAccountInfo } from "../../data/LoginSignUp";
 import { useEffect,useState } from "react";
+import { Button } from "react-native-paper";
 
 const Accept = ({navigation,route}) => {
     const {UserId,info,setInfo} = route.params;
@@ -17,13 +18,16 @@ const Accept = ({navigation,route}) => {
         }
         fetchUserInfo();
       }, []);
-    if(newInfo != []){
+      const HandlePress = () => {
+      if(newInfo != []){
        setInfo(newInfo);
-   navigation.navigate('Search',UserId);
-    }
+       navigation.popToTop();
+   //navigation.navigate('Search',UserId);
+    }}
         return(
         <View>
-            <Text>Your Flight had been booked, redirecting you to the home page...</Text>
+            <Text>Your Flight has been booked, redirecting you to the home page...</Text>
+            <Button onPress={HandlePress}>Go Back</Button>
         </View>
     );
 }
