@@ -86,9 +86,9 @@ const RewardCard = (props) => {
               const coins= parseInt(props.info[3]-props.coins);
               RedeemWithCoins(props.UserId, coins);
               const news=[
+        props.info[0],
         props.info[1],
         props.info[2],
-        props.info[0],
         coins,
         props.info[4],
         props.info[5],
