@@ -85,7 +85,17 @@ const RewardCard = (props) => {
             <Button onPress={()=>{
               const coins= parseInt(props.info[3]-props.coins);
               RedeemWithCoins(props.UserId, coins);
-              props.navigation.navigate("Redeem",{coins:coins});
+              const news=[
+        props.info[1],
+        props.info[2],
+        props.info[0],
+        coins,
+        props.info[4],
+        props.info[5],
+        props.info[6],
+        props.info[7],
+    ]
+              props.setInfo(news);
               hideDialog();              
               
             }}>Redeem</Button>
