@@ -20,15 +20,20 @@ import Redeem from "../components/Redeem";
 import Rewards from "./Rewards";
 const MainScreen = (props) => {
   const  info = props.info;
-  const setInfo = props.setInfo;
+  const setRInfo = props.setInfo;
   const UserId = props.UserId;
+  const setChanging = props.setChanging;
+  const setOpened = props.setOpened;
   const [newInf, setNewInfo] = useState([]);
-  useEffect(() => {
-    if(newInf.length != 0){
-      setInfo(newInf);
-    }
-  }, [newInf])
-  return (
+
+  function setInfo(newInfo){
+    setRInfo(newInfo);
+    setChanging(true);
+    setOpened(true);
+  }
+
+  
+    return (
     <Tab.Navigator
       initialRouteName="Browse"
       activeColor={colors.primary}
@@ -60,7 +65,7 @@ const MainScreen = (props) => {
       <Tab.Screen
         name="Rewards"
         component={Rewards}
-        initialParams={{info,setNewInfo,UserId}}
+        initialParams={{info,setInfo,UserId}}
         options={{
           tabBarLabel: "Rewards",
           tabBarIcon: ({ color }) => (
@@ -94,6 +99,7 @@ const Home = (props) => {
   const [Opened, setOpened] = useState(false);
   const [info, setInfo] = useState([]);
   const [UserId, setUserId] = useState("");
+  const [changing, setChanging] = useState(false);
 
   useEffect(() => {
     async function fetchUserInfo() {
@@ -106,7 +112,7 @@ const Home = (props) => {
     }
     console.log('efec')
     fetchUserInfo();
-  }, []);
+  }, [changing]);
 
   if(!info.length > 0||UserId == "") {
     return (
@@ -115,16 +121,17 @@ const Home = (props) => {
       </View>
     );
   }
+
   return (
     <View style={styles.container}>
 
       <View style={{ flex: 1 }}>
         {Opened ? (
-          <Dashboard UserId={UserId} info={info} Opened={Opened}  setOpened={setOpened} setInfo={setInfo} changed={props.changed} setChanged={props.setChanged} />
+          <Dashboard UserId={UserId} info={info} Opened={Opened}  setOpened={setOpened} setInfo={setInfo} changed={props.changed} setChanged={props.setChanged} setChanging={setChanging} changing={changing} />
         ) : (
           <View style={{flex:1}}>
           <Header Opened={Opened} setOpened={setOpened} UserId={UserId} info={info} />
-          <MainScreen info={info} UserId={UserId} setInfo={setInfo} />
+          <MainScreen info={info} UserId={UserId} setInfo={setInfo} setChanging={setChanging} setOpened={setOpened}/>
           </View>
         )}
       </View>
