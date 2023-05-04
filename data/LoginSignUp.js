@@ -35,10 +35,17 @@ async function AccountInfo(id,info){
   });
 
 }
+export async function RedeemWithCoins(id,coins){
+  const db = getFirestore(app);
+  const docRef = updateDoc(doc(db, "UserIdInfo", id), {
+    coins : coins,
+  });
+}
+
 export async function EditProf(id,number,name,expiry,cvc,info){
   const db = getFirestore(app);
 
-  const docRef = updateDoc(doc(db, "UserIdInfo", id), {
+  try{const docRef = updateDoc(doc(db, "UserIdInfo", id), {
     FirstName: info[0],
     LastName: info[1],
     DateOfBirth: Timestamp.fromDate(new Date(info[2])) ,
@@ -47,6 +54,10 @@ export async function EditProf(id,number,name,expiry,cvc,info){
     Location: info[5],
     ProfilePic: info[6],
   });
+}
+catch(e){
+  console.log(e);
+}
 }
 
 export async function ProfileFlights(id,flights){

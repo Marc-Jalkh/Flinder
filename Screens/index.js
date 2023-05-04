@@ -16,13 +16,18 @@ import { ActivityIndicator } from 'react-native-paper';
 import Search from "./Search";
 import MyFlights from "./MyFlights";
 import Radar from "./Radar";
-
+import Redeem from "../components/Redeem";
 import Rewards from "./Rewards";
 const MainScreen = (props) => {
   const  info = props.info;
   const setInfo = props.setInfo;
   const UserId = props.UserId;
-
+  const [newInf, setNewInfo] = useState([]);
+  useEffect(() => {
+    if(newInf.length != 0){
+      setInfo(newInf);
+    }
+  }, [newInf])
   return (
     <Tab.Navigator
       initialRouteName="Browse"
@@ -69,6 +74,16 @@ const MainScreen = (props) => {
         initialParams={{info,setInfo,UserId}}
         options={{
           tabBarLabel: "My Flights",
+          tabBarIcon: ({ color }) => (
+        <Ionicons name="airplane" size={26} color={color}/>
+        ),          }}
+      />
+      <Tab.Screen
+        name="Redeem"
+        component={Redeem}
+        initialParams={{info,setNewInfo,UserId}}
+        options={{
+          tabBarLabel: "Redeem",
           tabBarIcon: ({ color }) => (
         <Ionicons name="airplane" size={26} color={color}/>
         ),          }}

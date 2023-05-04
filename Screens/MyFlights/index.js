@@ -72,7 +72,8 @@ const PastFlights = (porps) => {
 const MyFlights = ({ navigation, route }) => {
   const { info, UserId } = route.params;
   console.log(info[7]);
-  if (info[7] == []) {
+  //if array == empty return no flights
+  if (info[7].length === 0) {
     return (
       <View>
         <Text>You have no flights Yet!</Text>

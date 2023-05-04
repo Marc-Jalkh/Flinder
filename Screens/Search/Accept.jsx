@@ -6,7 +6,6 @@ import { Button } from "react-native-paper";
 const Accept = ({navigation,route}) => {
     const {UserId,info,setInfo} = route.params;
     const Data = route.params.data;
-    const price = Data.price*100;
     
     const [newInfo,setNewInfo] = useState([]);
 
@@ -22,7 +21,6 @@ const Accept = ({navigation,route}) => {
       if(newInfo != []){
        setInfo(newInfo);
        navigation.popToTop();
-   //navigation.navigate('Search',UserId);
     }}
         return(
         <View>
