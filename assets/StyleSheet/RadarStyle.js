@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   {
     marginLeft: '10%',
     marginTop: '10%',
-    backgroundColor: colors.white,
+    backgroundColor: colors.secondary,
     borderRadius: 30, 
     borderWidth: 3,
     width: 250,
@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
   {
     width: 250,
     height: 150, 
-    borderRadius: 30, 
-    borderWidth: 3,
+    borderRadius: 20, 
+    borderWidth: 2,
     marginBottom: '15%',
   },
   HeaderStyle:
@@ -49,10 +49,16 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignContent: 'center',
     justifyContent: 'center',
-    marginTop: '20%',
+    marginTop: '40%',
     marginLeft: '10%',
     marginRight: '10%',
 
+  },
+  SearchBarMap:{
+    textAlign: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    marginTop: '15%',
   },
   SearchBarText:
   {
@@ -72,6 +78,7 @@ const styles = StyleSheet.create({
     marginTop: '10%',
     backgroundColor: colors.white,
     height: 450,
+    borderRadius: 30,
 
   },
   InfoTitleText:

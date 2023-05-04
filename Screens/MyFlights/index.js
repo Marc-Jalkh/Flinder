@@ -47,17 +47,13 @@ const MyFlights = ({ navigation, route }) => {
   return (
     <View style={{ backgroundColor: "white", flex: 1 }}>
       <ScrollView>
-        <Text>Future Flights:</Text>
+        <Text>My Flights:</Text>
         <View style={{ marginLeft: "10%" }}>
           <OnGoingFlights />
-          <OnGoingFlights />
         </View>
-        <Text>Past Flights:</Text>
+        <Text>More:</Text>
         <View style={{ flexDirection:'row',marginBottom:80}}>
         <ScrollView horizontal={true}>
-        <PastFlights />
-        <PastFlights />
-        <PastFlights />
         <PastFlights />
             <PastFlights />
         </ScrollView>
