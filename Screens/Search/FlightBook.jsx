@@ -4,9 +4,16 @@ import ticket from '../../assets/ticket.png';
 import { Button } from 'react-native-paper';
 import styles from '../../assets/StyleSheet/BookStyles.js';
 import { ProfileFlights } from '../../data/LoginSignUp';
-
+import * as MediaLibrary from 'expo-media-library';
+import { captureRef } from 'react-native-view-shot';
+import { useRef } from 'react';
 
 function FlightBook({ route, navigation }) {
+    const [status, requestPermission] = MediaLibrary.usePermissions();
+    if (status === null) {
+        requestPermission();
+      }
+      const imageRef = useRef();
 
     const Data = route.params.props;
 
@@ -20,6 +27,21 @@ function FlightBook({ route, navigation }) {
        }
     }
 
+    const HandleScreenShot = async () => {
+        try {
+            const uri = await captureRef(imageRef, {
+                format: "jpg",
+                quality: 0.8,
+                height: 1500,
+            });
+            const asset = await MediaLibrary.createAssetAsync(uri);
+            await MediaLibrary.createAlbumAsync("Download", asset, false);
+            alert("Screenshot saved to gallery");
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    
     return (
         <ScrollView>
             <View style={styles.Title}>
@@ -28,13 +50,14 @@ function FlightBook({ route, navigation }) {
 
             </View>
 
-            <View style={styles.TicketView}>
+            <View style={styles.TicketView}ref={imageRef} collapsable={false}>
                 <Image
                     source={ticket}
                     style={styles.ticket}
 
                 />
-                <View style={styles.BookingInfo}>
+                 
+                <View style={styles.BookingInfo} >
 
                     <Image
                         source={{ uri: Data.logo }}
@@ -78,13 +101,12 @@ function FlightBook({ route, navigation }) {
                     >Confirm Booking</Button>
 
                 </View>
-
-
-            </View>
+                </View>
 
             <View style={{ marginTop: '30%' }}>
                 <Text>{'\n'}{'\n'}</Text>
             </View>
+            <Button onPress={HandleScreenShot}>Screenshot</Button>
 
         </ScrollView>
 
