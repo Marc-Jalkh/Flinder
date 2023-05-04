@@ -5,7 +5,14 @@ import { SafeAreaView } from "react-native-safe-area-context";
 //import coins icon 
 import { Ionicons } from '@expo/vector-icons';
 import colors from "../assets/StyleSheet/Colors";
+import {getAccountInfo} from "../data/LoginSignUp.js"
+import { useEffect } from "react";
+import { useState } from "react";
+
 const Header = (props) => {
+    const userId = props.userId;
+
+
     return(
         <SafeAreaView edges={['top', 'left', 'right']}>
         <View style={styles.container}>
