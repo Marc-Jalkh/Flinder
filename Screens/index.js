@@ -42,7 +42,7 @@ const MainScreen = (props) => {
       <Tab.Screen
         name="Browse"
         component={Search}
-        initialParams={{UserId}}
+        initialParams={{UserId,info,setInfo}}
         options={{
           tabBarLabel: "Browse",
           tabBarIcon: ({ color }) => (
@@ -92,6 +92,7 @@ const Home = (props) => {
       const uid = JSON.parse(uidString);
       setUserId(uid);
       const userAccountInfo = await getAccountInfo(uid);
+
       setInfo(userAccountInfo);
     }
     console.log('efec')
@@ -113,7 +114,7 @@ const Home = (props) => {
           <Dashboard UserId={UserId} info={info} Opened={Opened}  setOpened={setOpened} setInfo={setInfo} changed={props.changed} setChanged={props.setChanged} />
         ) : (
           <View style={{flex:1}}>
-          <Header Opened={Opened} setOpened={setOpened} info={info} />
+          <Header Opened={Opened} setOpened={setOpened} UserId={UserId} info={info} />
           <MainScreen info={info} UserId={UserId} setInfo={setInfo} />
           </View>
         )}

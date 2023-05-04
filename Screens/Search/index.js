@@ -4,7 +4,7 @@ import SearchFrom from './FlightSearch'
 import FlightBrowse from './FlightBrowse'
 import FlightBook from './FlightBook';
 import { View, Text } from 'react-native';
-
+import Accept from './Accept';
 function Acom ()  {
     return (
         <View>
@@ -17,14 +17,14 @@ function Acom ()  {
 const Stack = createStackNavigator();
 
 function Search({ navigation,route}) {
-    const {UserId} = route.params;
-
+    const {UserId,info,setInfo} = route.params;
     return (
         <NavigationContainer independent={true}>
             <Stack.Navigator initialRouteName="Search">
                 <Stack.Screen name="Search" initialParams={{UserId}} component={SearchFrom} options={{headerShown: false}} />
                 <Stack.Screen name="Browse" component={FlightBrowse} options={{headerShown: false}}/>
                 <Stack.Screen name="Book"  component={FlightBook}  options={{headerShown: false}}/>
+                <Stack.Screen name="Accept" component={Accept} initialParams={{UserId,info,setInfo}} options={{headerShown: false}}/>
             </Stack.Navigator>
         </NavigationContainer>
     );

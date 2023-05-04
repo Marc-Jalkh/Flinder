@@ -6,6 +6,7 @@ import { Timestamp, doc, getFirestore, setDoc,getDoc, updateDoc } from "firebase
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getStorage } from "firebase/storage";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { onSnapshot } from "firebase/firestore";
 
 const app = initializeApp(firebaseConfig);
 async function signUp(email, password, checked,info,setChanged,changed) {
@@ -30,7 +31,7 @@ async function AccountInfo(id,info){
     Payment: [],
     Location: info.Location,
     ProfilePic: "gs://flindr-1f705.appspot.com/avatar.jpg",
-    Flights:{}
+    Flights:[]
   });
 
 }
@@ -187,7 +188,6 @@ export async function uploadImage(file,uid,passport){
 );
 return imgUrl;
 }
-
 
 
 export default signUp;

@@ -11,8 +11,10 @@ function FlightBook({ route, navigation }) {
     const Data = route.params.props;
 
     const HandlePress = async () => {
-       try{ await ProfileFlights(Data.Id,Data);
-       }
+       try{
+         await ProfileFlights(Data.Id,Data);
+         navigation.navigate('Accept',{data:Data});
+        }
        catch(e){
            alert(e);
        }
