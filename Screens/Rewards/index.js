@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 const Rewards = ({navigation, route}) => {
     const [change, setChange] = useState(false);
-    const {info,setInfo,UserId} = route.params;
+    const {info,setNewInfo,UserId} = route.params;
  
 
 
@@ -23,7 +23,7 @@ const Rewards = ({navigation, route}) => {
                 rewards.map((item,index) => {
                     return (
                         <View key={index} style={{width:'47%',height:150,marginLeft:5,marginRight:5,marginTop:10}} >
-                        <RewardCard navigation={navigation} key={index} coins={item.coins} setInfo={setInfo} setChange={setChange} change={change} UserId={UserId} info={info} itemName={item.itemName} />
+                        <RewardCard navigation={navigation} key={index} coins={item.coins} setInfo={setNewInfo} setChange={setChange} change={change} UserId={UserId} info={info} itemName={item.itemName} />
                         </View>
                 )}
                 )

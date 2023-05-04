@@ -34,6 +34,7 @@ const MainScreen = (props) => {
       activeColor={colors.primary}
       inactiveColor={colors.black}
       labeled={false}
+      
     >
       <Tab.Screen
         name="Radar"
@@ -59,7 +60,7 @@ const MainScreen = (props) => {
       <Tab.Screen
         name="Rewards"
         component={Rewards}
-        initialParams={{info,setInfo,UserId}}
+        initialParams={{info,setNewInfo,UserId}}
         options={{
           tabBarLabel: "Rewards",
           tabBarIcon: ({ color }) => (
@@ -76,18 +77,10 @@ const MainScreen = (props) => {
           tabBarLabel: "My Flights",
           tabBarIcon: ({ color }) => (
         <Ionicons name="airplane" size={26} color={color}/>
+            
         ),          }}
       />
-      <Tab.Screen
-        name="Redeem"
-        component={Redeem}
-        initialParams={{info,setNewInfo,UserId}}
-        options={{
-          tabBarLabel: "Redeem",
-          tabBarIcon: ({ color }) => (
-        <Ionicons name="airplane" size={26} color={color}/>
-        ),          }}
-      />
+
     </Tab.Navigator>
   );
 };
