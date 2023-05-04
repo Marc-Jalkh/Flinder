@@ -11,7 +11,6 @@ const FlightRadar = ({ route }) => {
 
     const data = route.params.data
 
-    console.log(data)
 
     const [MapRegion, setMapRegion] = React.useState({
         latitude: data.results.at(1).detail.lat,
@@ -23,15 +22,11 @@ const FlightRadar = ({ route }) => {
 
 
     return (
-        <ScrollView>
         <View>
 
-            <View style={styles.HeaderStyle}>
-                <Text style={styles.HeaderTextStyle}> Radar &#128225;</Text>
-            </View>
-
             <ImageBackground source={Bg} style={styles.ImageStyle}>
-                <View style={styles.SearchBar}>
+            <View style={{marginLeft: '10%', marginRight: '10%'}}>
+                <View style={styles.SearchBarMap}>
 
                     <View style={styles.InfoView}>
 
@@ -46,18 +41,17 @@ const FlightRadar = ({ route }) => {
 
                         <Text style={styles.InfoTitleText}>Latitude: <Text style={styles.InfoText}>{data.results.at(1).detail.lon}</Text></Text>
 
-                        <Text style={styles.InfoTitleText}>Route: <Text style={styles.InfoText}>{data.results.at(1).detail.route}</Text></Text>
+                        <Text style={styles.InfoTitleText}>Route: <Text style={styles.InfoText}>{"\n"+data.results.at(1).detail.route}</Text></Text>
 
                         <Text style={styles.InfoTitleText}>Callsign: <Text style={styles.InfoText}>{data.results.at(1).detail.callsign}</Text></Text>
 
                     </View>
-
+                </View>
                 </View>
             </ImageBackground>
 
 
         </View>
-        </ScrollView>
 
 
     )

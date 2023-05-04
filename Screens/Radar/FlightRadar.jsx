@@ -5,6 +5,7 @@ import styles from '../../assets/StyleSheet/RadarStyle';
 import { TextInput, Button } from 'react-native-paper';
 import Bg from '../../assets/Radar.png'
 import { Keyboard } from 'react-native';
+import colors from '../../assets/StyleSheet/Colors.js';
 
 const fetch = require('node-fetch');
 
@@ -20,11 +21,9 @@ async function ApiCall(ID, navigation) {
     };
 
     try {
-        console.log(url)
         const response = await fetch(url, options);
         const result = await response.text();
         const Jsonresult = JSON.parse(result)
-        console.log(Jsonresult)
 
 
         try
@@ -57,9 +56,6 @@ const FlightRadar = ({ navigation }) => {
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             <View>
 
-                <View style={styles.HeaderStyle}>
-                    <Text style={styles.HeaderTextStyle}> Radar &#128225;</Text>
-                </View>
 
                 <ImageBackground source={Bg} style={styles.ImageStyle}>
                     <View style={styles.SearchBar}>
@@ -78,6 +74,8 @@ const FlightRadar = ({ navigation }) => {
                         />
 
                         <Button
+                            backgroundColor={colors.primary}
+                            textColor={colors.white}
                             style={styles.button}
                             onPress={() => ApiCall(ID, navigation)}
                         >
