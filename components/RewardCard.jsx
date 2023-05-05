@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { customFonts } from "../assets/StyleSheet/Colors";
 import colors from "../assets/StyleSheet/Colors";
 import { RedeemWithCoins } from "../data/LoginSignUp";
+import { Ionicons } from '@expo/vector-icons';
 
 customFonts();
 import React from "react";
@@ -65,7 +66,7 @@ const RewardCard = (props) => {
               {props.itemName}
             </Text>
             <Text style={{ textAlign: "center", color: textColor }}>
-              {props.coins}
+              {props.coins} <Ionicons name="ios-cash" size={15} color={colors.secondary} />
             </Text>
           </View>
         </View>
