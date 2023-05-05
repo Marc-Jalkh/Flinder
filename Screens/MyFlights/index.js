@@ -134,7 +134,7 @@ const MyFlights = ({ navigation, route }) => {
   }
   return (
     <View style={{ backgroundColor: "white", flex: 1 }}>
-        <View style={{ marginLeft: "10%" }}>
+        <View style={{ marginLeft: "10%" , marginTop:"5%" }}>
 
         <Text style={styles.HeadingTxt}>My Flights:</Text>
 
