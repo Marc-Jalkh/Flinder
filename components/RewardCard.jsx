@@ -39,7 +39,7 @@ const RewardCard = (props) => {
     <View style={{ flex: 1 }}>
       <TouchableOpacity onPress={() => HandlePress()}>
         <Image
-          source={require("../assets/img/logo.png")}
+          source={require("../assets/img/oscar.jpg")}
           style={{ width: "100%", height: 150, borderRadius: 20 }}
         />
         <View

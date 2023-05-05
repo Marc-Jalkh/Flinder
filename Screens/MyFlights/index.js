@@ -1,8 +1,10 @@
-import { View, Text, ImageBackground, ScrollView } from "react-native";
-import { Button } from "react-native-paper";
+import { View, Text, ImageBackground, ScrollView, TouchableOpacity } from "react-native";
+import { ActivityIndicator, Button } from "react-native-paper";
 import styles from "../../assets/StyleSheet/MyFlightsStyles";
 import airports from "../../airports.json";
 import {useEffect, useState} from 'react';
+import countryimg from "../../data/countryimg.json";
+
 const OnGoingFlights = (porps) => {
   const [cntr,setCntr]=useState("")
   let country="";
@@ -12,16 +14,33 @@ const OnGoingFlights = (porps) => {
     }
   }
   )
+  const [img,setImg]=useState("")
+  function setImgs(imgs){
+    if (imgs== undefined){
+      imgs="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.salonlfc.com%2Fen%2Fimage-not-found-2%2F&psig=AOvVaw2CbmC-haDkKbIXpOqU_rmB&ust=1683367130643000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCJj737H13f4CFQAAAAAdAAAAABAE"
+    }
+    setImg(imgs);
+  }
+
   useEffect(()=>{
     setCntr(country);
+    for(countrie in countryimg){
+      if(countrie==country){
+        setImgs(countryimg[countrie]);
+      }
+    }
 
   }
   ,[country])
-
+  if(img==""){
+    return ( 
+      <ActivityIndicator animating={true} />
+    )
+  }
   return (
     <View style={styles.Ongoingcont}>
       <ImageBackground
-        source={require("../../assets/img/logo.png")}
+        source={{uri : img}}
         style={styles.Imagecontainer}
       >
         <View style={{ flex: 1 }}>
@@ -39,6 +58,13 @@ const OnGoingFlights = (porps) => {
 };
 const PastFlights = (porps) => {
   const [cntr,setCntr]=useState("")
+  const [img,setImg]=useState("")
+  function setImgs(imgs){
+    if (imgs== undefined){
+      imgs="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.salonlfc.com%2Fen%2Fimage-not-found-2%2F&psig=AOvVaw2CbmC-haDkKbIXpOqU_rmB&ust=1683367130643000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCJj737H13f4CFQAAAAAdAAAAABAE"
+    }
+    setImg(imgs);
+  }
   let country="";
   airports.map((item,index)=>{
     if(item.code===porps.country){
@@ -48,14 +74,22 @@ const PastFlights = (porps) => {
   )
   useEffect(()=>{
     setCntr(country);
-
+    for(countrie in countryimg){
+      if(countrie==country){
+        setImgs(countryimg[countrie]);
+      }
+    }
   }
   ,[country])
-
+  if(img==""){
+    return (
+      <ActivityIndicator animating={true} />
+    )
+  }
   return (
     <View>
       <ImageBackground
-        source={require("../../assets/img/logo.png")}
+        source={{uri : img}}
         style={{ width: 140, height: 120, marginTop: 20,marginLeft:10 }}
       >
         <View style={{ flex: 1 }}>
@@ -71,7 +105,8 @@ const PastFlights = (porps) => {
 };
 const MyFlights = ({ navigation, route }) => {
   const { info, UserId } = route.params;
-  console.log(info[7]);
+  const [firstItem,setFirstItem]=useState(info[7][0])
+
   //if array == empty return no flights
   if (info[7].length === 0) {
     return (
@@ -80,7 +115,6 @@ const MyFlights = ({ navigation, route }) => {
       </View>
     );
   }
-  const firstItem=info[7][0];
   return (
     <View style={{ backgroundColor: "white", flex: 1 }}>
         <View style={{ marginLeft: "10%" }}>
@@ -96,9 +130,11 @@ const MyFlights = ({ navigation, route }) => {
           {
             info[7].map((item, index) => {
               return (
-                <View style={styles.smallFlight} key={index}>
+                <TouchableOpacity key={index} onPress={()=>{setFirstItem(item)}}>
+                <View style={styles.smallFlight} >
                   <PastFlights country={item.to} DepDate={item.date}/>
                 </View>
+                </TouchableOpacity>
               );
             }
             )
