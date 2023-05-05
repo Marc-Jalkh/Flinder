@@ -194,6 +194,7 @@ const Register = ({ navigation ,route }) => {
           />
         <TextInput
           label="Password"
+          secureTextEntry={true}
           value={pass}
           mode="outlined"
           onChangeText={(pass) => setPass(pass)}
@@ -203,6 +204,7 @@ const Register = ({ navigation ,route }) => {
           label="Password"
           value={pass2}
           mode="outlined"
+          secureTextEntry={true}
           onChangeText={(pass2) => setPass2(pass2)}
           outlineColor={error2["pass2"]}
         />

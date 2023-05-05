@@ -51,6 +51,7 @@ const Register = ({ navigation ,route }) => {
           onChangeText={(text) => HandlechangeTXT(text)}
         />
         <TextInput
+          secureTextEntry={true}
           label="Password"
           value={pass}
           mode="outlined"
