@@ -7,6 +7,10 @@ import countryimg from "../../data/countryimg.json";
 
 const OnGoingFlights = (porps) => {
   const [cntr,setCntr]=useState("")
+  const img= porps.img;
+  const setImg=porps.setImg;
+  const setFound=porps.setFound;
+  const found=porps.found;
   let country="";
   airports.map((item,index)=>{
     if(item.code===porps.country.to){
@@ -14,10 +18,9 @@ const OnGoingFlights = (porps) => {
     }
   }
   )
-  const [img,setImg]=useState("")
   function setImgs(imgs){
-    if (imgs== undefined){
-      imgs="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.salonlfc.com%2Fen%2Fimage-not-found-2%2F&psig=AOvVaw2CbmC-haDkKbIXpOqU_rmB&ust=1683367130643000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCJj737H13f4CFQAAAAAdAAAAABAE"
+    if (imgs== ""){
+      imgs="https://react.semantic-ui.com/images/wireframe/image.png"
     }
     setImg(imgs);
   }
@@ -26,13 +29,17 @@ const OnGoingFlights = (porps) => {
     setCntr(country);
     for(countrie in countryimg){
       if(countrie==country){
+        setFound(true);
         setImgs(countryimg[countrie]);
       }
     }
 
-  }
-  ,[country])
+  },[country])
+  
   if(img==""){
+    if(found==false){
+      setImgs("");
+    }
     return ( 
       <ActivityIndicator animating={true} />
     )
@@ -59,9 +66,11 @@ const OnGoingFlights = (porps) => {
 const PastFlights = (porps) => {
   const [cntr,setCntr]=useState("")
   const [img,setImg]=useState("")
+  const [found,setFound]=useState(false)
+
   function setImgs(imgs){
-    if (imgs== undefined){
-      imgs="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.salonlfc.com%2Fen%2Fimage-not-found-2%2F&psig=AOvVaw2CbmC-haDkKbIXpOqU_rmB&ust=1683367130643000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCJj737H13f4CFQAAAAAdAAAAABAE"
+    if (imgs== ""){
+      imgs="https://react.semantic-ui.com/images/wireframe/image.png"
     }
     setImg(imgs);
   }
@@ -76,12 +85,18 @@ const PastFlights = (porps) => {
     setCntr(country);
     for(countrie in countryimg){
       if(countrie==country){
+        setFound(true);
         setImgs(countryimg[countrie]);
       }
     }
+
   }
   ,[country])
+
   if(img==""){
+    if(found==false){
+      setImgs("");
+    }
     return (
       <ActivityIndicator animating={true} />
     )
@@ -106,6 +121,8 @@ const PastFlights = (porps) => {
 const MyFlights = ({ navigation, route }) => {
   const { info, UserId } = route.params;
   const [firstItem,setFirstItem]=useState(info[7][0])
+  const [img,setImg]=useState("")
+  const [found,setFound]=useState(false)
 
   //if array == empty return no flights
   if (info[7].length === 0) {
@@ -121,7 +138,7 @@ const MyFlights = ({ navigation, route }) => {
 
         <Text style={styles.HeadingTxt}>My Flights:</Text>
 
-          <OnGoingFlights country ={firstItem}/>
+          <OnGoingFlights img={img} setImg={setImg} found={found} setFound={setFound} country ={firstItem}/>
         </View>
         <Text style={styles.Moretxt}>More:</Text>
 
@@ -130,7 +147,7 @@ const MyFlights = ({ navigation, route }) => {
           {
             info[7].map((item, index) => {
               return (
-                <TouchableOpacity key={index} onPress={()=>{setFirstItem(item)}}>
+                <TouchableOpacity key={index} onPress={()=>{setFirstItem(item),setImg(""),setFound(false)}}>
                 <View style={styles.smallFlight} >
                   <PastFlights country={item.to} DepDate={item.date}/>
                 </View>
