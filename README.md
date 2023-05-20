@@ -4,15 +4,17 @@ Flindr is a React Native application that has been developed using Expo Go and R
 
 ## Screenshots
 
-<img src="Screenshots/Screen(1).jpg" alt="Screenshot 1" height="300">
-<img src="Screenshots/Screen(2).jpg" alt="Screenshot 2" height="300">
-<img src="Screenshots/Screen(3).jpg" alt="Screenshot 3" height="300">
-<img src="Screenshots/Screen(4).jpg" alt="Screenshot 4" height="300">
-<img src="Screenshots/Screen(5).jpg" alt="Screenshot 5" height="300">
-<img src="Screenshots/Screen(6).jpg" alt="Screenshot 6" height="300">
-<img src="Screenshots/Screen(7).jpg" alt="Screenshot 7" height="300">
-<img src="Screenshots/Screen(8).jpg" alt="Screenshot 8" height="300">
-<img src="Screenshots/Screen(9).jpg" alt="Screenshot 9" height="300">
+<div style="display: flex; flex-wrap: wrap;">
+<img src="Screenshots/Screen(1).jpg" alt="Screenshot 1" height="400">
+<img src="Screenshots/Screen(2).jpg" alt="Screenshot 2" height="400">
+<img src="Screenshots/Screen(3).jpg" alt="Screenshot 3" height="400">
+<img src="Screenshots/Screen(4).jpg" alt="Screenshot 4" height="400">
+<img src="Screenshots/Screen(5).jpg" alt="Screenshot 5" height="400">
+<img src="Screenshots/Screen(6).jpg" alt="Screenshot 6" height="400">
+<img src="Screenshots/Screen(7).jpg" alt="Screenshot 7" height="400">
+<img src="Screenshots/Screen(8).jpg" alt="Screenshot 8" height="400">
+<img src="Screenshots/Screen(9).jpg" alt="Screenshot 9" height="400">
+</div>
 
 ## Features
 
