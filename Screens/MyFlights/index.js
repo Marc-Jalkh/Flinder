@@ -44,7 +44,15 @@ const OnGoingFlights = (porps) => {
       <ActivityIndicator animating={true} />
     )
   }
+  //style sheet to put some border radius to the main view 
+  const styleMain = {
+    Ongoingcont: {
+      borderRadius: 20,
+      overflow: "hidden",
+    }
+  };
   return (
+    <View style={styleMain.Ongoingcont}>
     <View style={styles.Ongoingcont}>
       <ImageBackground
         source={{uri : img}}
@@ -60,6 +68,7 @@ const OnGoingFlights = (porps) => {
         <Text>Departure Time: {porps.country.time}</Text>
         </View>
       </ImageBackground>
+    </View>
     </View>
   );
 };

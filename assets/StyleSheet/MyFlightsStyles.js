@@ -6,11 +6,15 @@ customFonts();
 
 export default StyleSheet.create({
     Imagecontainer:{
+        borderRadius: 20,
         width: 320, 
         height: 300, 
         marginTop: 20,
+        oveerflow: "hidden",
     },
     Ongoingcont:{
+        overflow: "hidden",
+        borderRadius: 20,
         width: 320,
     },
     TextContainer:{
@@ -32,6 +36,8 @@ export default StyleSheet.create({
         marginLeft: "10%"
     },
     smallFlight:{
+        borderRadius: 20,
+        overflow: "hidden",
         marginBottom: 20,
     }
 });
