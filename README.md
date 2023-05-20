@@ -33,5 +33,5 @@ Flindr is a React Native application that has been developed using Expo Go and R
 
 ## Contributors
 
-- 
-- 
+- [Marc Jalkh](https://github.com/Marc-Jalkh)
+- [Anthony Saad](https://github.com/Dev-Sd3)
